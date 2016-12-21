@@ -1,0 +1,7 @@
+volumes/data/
+volumes/logs/
+*.rar
+*.tar
+*.tar.gz
+*.zip
+

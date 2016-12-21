@@ -1,0 +1,18 @@
+version: "2"
+services:
+    gitlab:
+        build:
+            context: ./image/
+        image: stour/gitlab
+        container_name: gitlab
+        hostname: your-hostname
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - "443:443"
+            - "80:80"
+            - "10022:22"
+        volumes:
+            - ./volumes/config/gitlab.rb:/etc/gitlab/gitlab.rb:rw
+            - ./volumes/logs:/var/log/gitlab:rw
+            - ./volumes/data:/var/opt/gitlab:rw
