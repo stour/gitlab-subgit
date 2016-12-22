@@ -105,27 +105,27 @@ gitlab_rails['gitlab_email_display_name'] = 'GitLab'
 ## Be careful not to break the indentation in the ldap_servers block. It is in
 ## yaml format and the spaces must be retained. Using tabs will not work.
 
-# gitlab_rails['ldap_enabled'] = false
-# gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
-#   main: # 'main' is the GitLab 'provider ID' of this LDAP server
-#     label: 'LDAP'
-#     host: '_your_ldap_server'
-#     port: 389
-#     uid: 'sAMAccountName'
-#     method: 'plain' # "tls" or "ssl" or "plain"
-#     bind_dn: '_the_full_dn_of_the_user_you_will_bind_with'
-#     password: '_the_password_of_the_bind_user'
-#     active_directory: true
-#     allow_username_or_email_login: false
-#     block_auto_created_users: false
-#     base: ''
-#     user_filter: ''
-#     attributes:
-#       username: ['uid', 'userid', 'sAMAccountName']
-#       email:    ['mail', 'email', 'userPrincipalName']
-#       name:       'cn'
-#       first_name: 'givenName'
-#       last_name:  'sn'
+gitlab_rails['ldap_enabled'] = true
+gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
+main: # 'main' is the GitLab 'provider ID' of this LDAP server
+  label: 'LDAP'
+  host: 'hostname-without-protocol'
+  port: 389
+  uid: 'sAMAccountName'
+  method: 'plain' # "tls" or "ssl" or "plain"
+  bind_dn: 'CN=SOME BODY,OU=SOMEWHERE,OU=FR,OU=users,OU=YourGroup,OU=Users,DC=dc'
+  password: 'bind-dn-password'
+  active_directory: true
+  allow_username_or_email_login: false
+  block_auto_created_users: false
+  base: 'OU=Users,DC=dc'
+  user_filter: ''
+  attributes:
+    username: ['uid', 'userid', 'sAMAccountName']
+    email:    ['mail', 'email', 'userPrincipalName']
+    name:       'cn'
+    first_name: 'givenName'
+    last_name:  'sn'
 #     ## EE only
 #     group_base: ''
 #     admin_group: ''
@@ -154,7 +154,7 @@ gitlab_rails['gitlab_email_display_name'] = 'GitLab'
 #     group_base: ''
 #     admin_group: ''
 #     sync_ssh_keys: false
-# EOS
+EOS
 
 ## Setting up Kerberos (EE only)
 ## See https://docs.gitlab.com/ee/integration/kerberos.html#http-git-access
