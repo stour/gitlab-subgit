@@ -226,7 +226,7 @@ EOS
 # DEPRECATED: gitlab_rails['satellites_timeout'] = 30
 
 ## GitLab Shell settings for GitLab
-# gitlab_rails['gitlab_shell_ssh_port'] = 22
+gitlab_rails['gitlab_shell_ssh_port'] = 10022
 # gitlab_rails['git_max_size'] = 20971520
 # gitlab_rails['git_timeout'] = 10
 
