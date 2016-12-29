@@ -1,0 +1,15 @@
+concurrent = 4
+check_interval = 0
+
+#[[runners]]
+#  name = "gitlab-run-executor"
+#  url = "http://your-host.com"
+#  token = ""
+#  executor = "docker"
+#  [runners.docker]
+#    tls_verify = false
+#    image = "maven:3.3.9-jdk-8"
+#    privileged = false
+#    disable_cache = false
+#    volumes = ["/cache"]
+#  [runners.cache]

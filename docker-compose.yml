@@ -16,3 +16,15 @@ services:
             - ./volumes/config/gitlab.rb:/etc/gitlab/gitlab.rb:rw
             - ./volumes/logs:/var/log/gitlab:rw
             - ./volumes/data:/var/opt/gitlab:rw
+    # To register the runner to your GitLab server either:
+    # - Run 'docker exec -it gitlab-run-executor gitlab-runner register' on your Docker host
+    # - Or uncomment runners section in ./volumes/runner/config.toml and fill parameters values
+    gitlab-run-executor:
+        image: gitlab/gitlab-runner:alpine
+        container_name: gitlab-run-executor
+        hostname: gitlab-run-executor
+        restart: always
+        network_mode: "bridge"
+        volumes:
+            - ./volumes/runner:/etc/gitlab-runner:rw
+            - /var/run/docker.sock:/var/run/docker.sock
