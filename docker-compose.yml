@@ -25,6 +25,8 @@ services:
         hostname: gitlab-run-executor
         restart: always
         network_mode: "bridge"
+        depends_on:
+            - gitlab
         volumes:
             - ./volumes/runner:/etc/gitlab-runner:rw
             - /var/run/docker.sock:/var/run/docker.sock
