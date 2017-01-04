@@ -2,6 +2,12 @@ FROM gitlab/gitlab-ce:latest
 
 USER root
 
+# add SSL keys
+RUN mkdir -p /etc/gitlab/ssl && \
+    chmod 700 /etc/gitlab/ssl
+COPY your-hostname.key /etc/gitlab/ssl/
+COPY your-hostname.crt /etc/gitlab/ssl/
+
 # install unzip
 RUN apt-get update && \
     apt-get install -y --no-install-recommends unzip
@@ -32,7 +38,6 @@ ENV PATH /opt/subgit-$SUBGIT_VERSION/bin/:$PATH
 COPY subgit.key /opt/subgit-$SUBGIT_VERSION/
 
 COPY entrypoint.sh /entrypoint.sh
-# restart SubGit daemon on configured repositories
 ENTRYPOINT ["/entrypoint.sh"]
 # and execute GitLab wrapper
 CMD ["/assets/wrapper"]

@@ -8,7 +8,7 @@
 ## URL on which GitLab will be reachable.
 ## For more details on configuring external_url see:
 ## https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
-external_url 'http://your-hostname'
+external_url 'https://your-hostname'
 
 
 ## Note: configuration settings below are optional.
@@ -683,7 +683,7 @@ gitlab_rails['smtp_openssl_verify_mode'] = 'none'
 
 # nginx['enable'] = true
 # nginx['client_max_body_size'] = '250m'
-# nginx['redirect_http_to_https'] = false
+nginx['redirect_http_to_https'] = true
 # nginx['redirect_http_to_https_port'] = 80
 # nginx['ssl_client_certificate'] = "/etc/gitlab/ssl/ca.crt" # Most root CA's are included by default
 # nginx['ssl_verify_client'] = "off" # enable/disable 2-way SSL client authentication
