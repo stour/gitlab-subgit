@@ -3,9 +3,10 @@ check_interval = 0
 
 #[[runners]]
 #  name = "gitlab-run-executor"
-#  url = "http://your-host.com"
+#  url = "https://your-host.com"
 #  token = ""
 #  executor = "docker"
+#  tls-ca-file = "/etc/gitlab-runner/certs.crt"
 #  [runners.docker]
 #    tls_verify = false
 #    image = "maven:3.3.9-jdk-8"
