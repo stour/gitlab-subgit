@@ -8,12 +8,12 @@ if [ $1 != "configure-interactive" ]; then
     do
         if [ -d "$dir/subgit" -a -d "$dir/custom_hooks" ]; then
             echo "$0: Starting SubGit daemon for repository $dir"
-            su -c "export PATH=/opt/subgit-3.2.2/bin/:$PATH && rm $dir/subgit/daemon.* && subgit fetch $dir" git
+            su -c "export PATH=/opt/subgit-3.2.2/bin/:$PATH && rm -f $dir/subgit/daemon.* && subgit fetch $dir" git
         fi
     done
 
-    # Fixes permissions for all files (and in particular for Git files)
-    update-permissions
+    # Fixes permissions of Git files
+    chown -R git:git /var/opt/gitlab/git-data
 
     exec "$@"
 
