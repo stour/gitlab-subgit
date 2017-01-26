@@ -10,14 +10,15 @@ if [ $1 != "configure-interactive" ]; then
     for dir in /var/opt/gitlab/git-data/repositories/*/*
     do
         if [ -d "$dir/subgit" -a -d "$dir/custom_hooks" ]; then
+
+            if [ -f "$KEY_PATH" ]; then
+                echo "$0: Registering licence key for repository $dir"
+                subgit register --key $KEY_PATH $dir
+            fi
+
             echo "$0: Starting SubGit daemon for repository $dir"
             su -c "export PATH=/opt/subgit-3.2.2/bin/:$PATH && rm -f $dir/subgit/daemon.* && subgit fetch $dir" git
 
-            # Activate SubGit registration key for the repository
-            if [ -f "$KEY_PATH" ]; then
-                echo "$0: subgit register --key $KEY_PATH $dir"
-                subgit register --key $KEY_PATH $dir
-            fi
         fi
     done
 
