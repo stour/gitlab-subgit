@@ -22,20 +22,20 @@ ADD jdk-$JAVA_VERSION-linux-x64.tar.gz /opt/
 
 # install SubGit
 ENV SUBGIT_VERSION 3.2.2
-ENV SUBGIT_HOME /opt/subgit-3.2.2
+ENV SUBGIT_HOME /opt/subgit-$SUBGIT_VERSION
 ENV PATH $SUBGIT_HOME/bin/:$PATH
 COPY subgit-$SUBGIT_VERSION.zip /tmp/
 
 WORKDIR /tmp/
 RUN unzip subgit-$SUBGIT_VERSION.zip && \
     mv subgit-$SUBGIT_VERSION /opt/ && \
-    chown -R root:root /opt/subgit-$SUBGIT_VERSION && \
-    chmod -R go+x /opt/subgit-$SUBGIT_VERSION && \
+    chown -R root:root $SUBGIT_HOME && \
+    chmod -R go+x $SUBGIT_HOME && \
     rm subgit-$SUBGIT_VERSION.zip
-ENV PATH /opt/subgit-$SUBGIT_VERSION/bin/:$PATH
+ENV PATH $SUBGIT_HOME/bin/:$PATH
 
 # copy SubGit registration key
-COPY subgit.key /opt/subgit-$SUBGIT_VERSION/
+COPY subgit.key $SUBGIT_HOME/
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
