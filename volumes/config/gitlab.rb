@@ -18,7 +18,7 @@ external_url 'https://your-hostname'
 ############################
 
 # gitlab_rails['gitlab_ssh_host'] = 'ssh.host_example.com'
-# gitlab_rails['time_zone'] = 'UTC'
+gitlab_rails['time_zone'] = 'Europe/Paris'
 gitlab_rails['gitlab_email_enabled'] = true
 gitlab_rails['gitlab_email_from'] = 'gitlab@your-mail.com'
 gitlab_rails['gitlab_email_display_name'] = 'GitLab'
